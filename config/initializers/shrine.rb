@@ -11,5 +11,5 @@ Shrine.plugin :derivatives, create_on_promote: true # Save image in multiple ver
 Shrine.plugin :backgrounding # Background processing
 
 Shrine::Attacher.promote_block do
-  PromoteJob.perform_async(self.class.name, record.class.name, record.id, name, file_data)
+  PromoteWorker.perform_async(self.class.name, record.class.name, record.id, name, file_data)
 end
